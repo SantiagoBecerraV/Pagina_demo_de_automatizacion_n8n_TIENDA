@@ -1,0 +1,1700 @@
+{
+  "name": "act",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2e468cb3-208f-4c72-bc00-2a64d6b00e72",
+              "name": "id_pedido",
+              "value": "=TI-{{ $now.toFormat('yyyyMMdd')}}-{{ $execution.id }}",
+              "type": "string"
+            },
+            {
+              "id": "9ed08593-aadf-4005-9ae2-b509ab504e30",
+              "name": "cliente",
+              "value": "={{ $json.body.nombre_cliente.trim().toLowerCase().split(' ').map(palabra => palabra.charAt(0).toUpperCase()+palabra.slice(1)).join(' ') }}",
+              "type": "string"
+            },
+            {
+              "id": "ac141f8d-89af-4901-a446-0af8df165fa9",
+              "name": "correo_cliente",
+              "value": "={{ $json.body.correo.trim().toLowerCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "8b5aa4ea-dd1e-4d87-bd66-6e2fe8f4b4d9",
+              "name": "body.telefono",
+              "value": "={{ $json.body.telefono.trim().toLowerCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "55d691f7-5116-433d-b690-5047341eef10",
+              "name": "body.producto",
+              "value": "={{ $json.body.producto.trim().toLowerCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "f8d55127-a899-4f9c-b9ed-621d4785653a",
+              "name": "body.total",
+              "value": "={{ $json.body.total }}",
+              "type": "number"
+            },
+            {
+              "id": "95eaa9cb-d551-4b7f-ab79-d916208cc9ca",
+              "name": "body.cantidad",
+              "value": "={{ $json.body.cantidad }}",
+              "type": "number"
+            },
+            {
+              "id": "1ac59b5b-79c0-4c72-b3fe-324b2bde363d",
+              "name": "body.direccion",
+              "value": "={{ $json.body.direccion.trim().toLowerCase() }}",
+              "type": "string"
+            },
+            {
+              "id": "4604ef31-1c85-4c93-a22a-8eb0eedb6667",
+              "name": "body.barrio",
+              "value": "={{ $json.body.barrio.trim().toLowerCase() }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -1184,
+        576
+      ],
+      "id": "3fed085b-6af3-4639-ace7-f3acc191c3dd",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "c69169a9-2571-4e65-b8d9-e732b6b93db9",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1408,
+        576
+      ],
+      "id": "7f3fe254-1f8f-40c3-a9cd-e0864f71c844",
+      "name": "Webhook",
+      "webhookId": "c69169a9-2571-4e65-b8d9-e732b6b93db9"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.body.producto }}",
+                    "rightValue": "salchipapa sencilla",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "fa426783-1765-4ef8-9b23-cd65bdab2006"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Salchipapa Sc"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "ed9f6369-30ce-4d75-8109-3005165295bf",
+                    "leftValue": "={{ $json.body.producto }}",
+                    "rightValue": "salchipapa especial camacho",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Salchipapa Es"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "48fd1df9-24f2-4063-9740-5724dc95748b",
+                    "leftValue": "={{ $json.body.producto }}",
+                    "rightValue": "hamburguesa camachera",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Hamburguesa"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "3e33169f-e9f7-4414-ab54-490150a3840c",
+                    "leftValue": "={{ $json.body.producto }}",
+                    "rightValue": "perro caliente especial",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Perro Es"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "715c9e29-aff1-4c9e-870a-685f8aef818f",
+                    "leftValue": "={{ $json.body.producto }}",
+                    "rightValue": "chuzo de pollo",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Chuzo"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "a7f4a23c-89cc-4074-8acd-36493cd1714a",
+                    "leftValue": "={{ $json.body.producto }}",
+                    "rightValue": "papas locas",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Papas Lcs"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -960,
+        496
+      ],
+      "id": "08a58c1c-4c64-49ee-b3e0-34804458f099",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1POXAUiBHup7Zc3nxLHFJ0D16p5_9JJOzF8JHtbSlHLU",
+          "mode": "list",
+          "cachedResultName": "automatizacion",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1POXAUiBHup7Zc3nxLHFJ0D16p5_9JJOzF8JHtbSlHLU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Hoja 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1POXAUiBHup7Zc3nxLHFJ0D16p5_9JJOzF8JHtbSlHLU/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "fecha": "={{ $now.toFormat('yyyy-MM-dd')}}-{{ $execution.id }}",
+            "id_pedido": "={{ $json.id_pedido }}",
+            "producto": "={{ $('Calcular Total Final').item.json.body.producto }}",
+            "cantidad": "={{ $('Calcular Total Final').item.json.body.cantidad }}",
+            "barrio": "={{ $('Calcular Total Final').item.json.body.barrio }}",
+            "total": "={{ $('Calcular Total Final').item.json.body.total }}",
+            "estado": "En realización "
+          },
+          "matchingColumns": [
+            "id_pedido"
+          ],
+          "schema": [
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "id_pedido",
+              "displayName": "id_pedido",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "producto",
+              "displayName": "producto",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "cantidad",
+              "displayName": "cantidad",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "total",
+              "displayName": "total",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "barrio",
+              "displayName": "barrio",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        512
+      ],
+      "id": "b9a08560-b4c1-4d50-94c7-d90394cde9ba",
+      "name": "Append or update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "BCnSdzqQGrkytmWa",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6aedd356-8cae-412b-b4b7-23d18b9a02ae",
+              "name": "tiempo_prep_min",
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "id": "38d28457-9091-407f-81f3-7816a20ed430",
+              "name": "precio_unitario",
+              "value": "12000",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -736,
+        0
+      ],
+      "id": "58fa6265-da29-4eb5-b848-d56bfd336dfa",
+      "name": "Salchipapa Sencilla"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "070ccc5a-eff5-4aff-929d-f0c9dc14f491",
+              "name": "tiempo_prep_min",
+              "value": "10",
+              "type": "string"
+            },
+            {
+              "id": "29d156b3-b96a-4f85-956a-94ab4ece2477",
+              "name": "precio_unitario",
+              "value": "18000",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -736,
+        192
+      ],
+      "id": "bccd1a6c-35ef-4c5e-b957-bebb04d2d804",
+      "name": "Salchipapa especial"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "3b766d4a-efd3-4d41-8f81-c94eaac6d019",
+              "name": "tiempo_prep_min",
+              "value": "12",
+              "type": "string"
+            },
+            {
+              "id": "c98934c7-8168-4981-a103-221e716c2efb",
+              "name": "precio_unitario",
+              "value": "16000",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -736,
+        384
+      ],
+      "id": "9e6b8411-0a66-429a-822e-335c9f507869",
+      "name": "Hamburguesa"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "13777b56-fb60-46f4-aafd-2848ca4fbb61",
+              "name": "tiempo_prep_min",
+              "value": "6",
+              "type": "string"
+            },
+            {
+              "id": "8f20ce5d-a3f4-4923-9a1e-0de6eeb0cbc7",
+              "name": "precio_unitario",
+              "value": "10000",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -736,
+        576
+      ],
+      "id": "4fb77c1c-b950-4ea7-aa99-1c62cb158a98",
+      "name": "Perro Especial"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eff808b9-ccbc-4b9c-a913-0a0a98506ddb",
+              "name": "tiempo_prep_min",
+              "value": "15",
+              "type": "string"
+            },
+            {
+              "id": "a0f21020-65a6-4e82-ac63-d26d231ee1b2",
+              "name": "precio_unitario",
+              "value": "14000",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -736,
+        768
+      ],
+      "id": "a25b0b07-033b-41ba-bc0a-6992bbeb2ef2",
+      "name": "Chuzo poll"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6ff91e2a-9602-4ae7-bbea-b9d082339a36",
+              "name": "tiempo_prep_min",
+              "value": "8",
+              "type": "string"
+            },
+            {
+              "id": "5bc78935-1905-420f-9bb3-b79d489b85c2",
+              "name": "precio_unitario",
+              "value": "13000",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -736,
+        960
+      ],
+      "id": "333f5031-fd41-4ea8-b833-67ad8d262e34",
+      "name": "Papa Locas"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1410c86b-54b1-41a7-ae14-faca10ac09c9",
+              "name": "tiempo_prep_min",
+              "value": "Por definir",
+              "type": "string"
+            },
+            {
+              "id": "4cc8a1bf-db22-4b9a-acf5-90b9663778aa",
+              "name": "precio_unitario",
+              "value": "Por definir",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -736,
+        1152
+      ],
+      "id": "91d92310-df56-45ce-9f3f-bc714d1541c6",
+      "name": "Fallback"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c001",
+              "name": "costo_domicilio",
+              "value": "4000",
+              "type": "number"
+            },
+            {
+              "id": "c001b",
+              "name": "tiempo_entrega_min",
+              "value": "25",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        -192
+      ],
+      "id": "b693139d-accb-4db4-8aa4-eb9b84fed4c8",
+      "name": "Zona Centro"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c002",
+              "name": "costo_domicilio",
+              "value": "4000",
+              "type": "number"
+            },
+            {
+              "id": "c002b",
+              "name": "tiempo_entrega_min",
+              "value": "25",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        0
+      ],
+      "id": "f271d6ea-0c7c-4de9-b637-05e9f207ff57",
+      "name": "Zona Cabecera"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c003",
+              "name": "costo_domicilio",
+              "value": "4000",
+              "type": "number"
+            },
+            {
+              "id": "c003b",
+              "name": "tiempo_entrega_min",
+              "value": "25",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        192
+      ],
+      "id": "a11baa2f-c529-445b-899f-ef71f985f2c1",
+      "name": "Zona Cañaveral"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c004",
+              "name": "costo_domicilio",
+              "value": "4500",
+              "type": "number"
+            },
+            {
+              "id": "c004b",
+              "name": "tiempo_entrega_min",
+              "value": "30",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        384
+      ],
+      "id": "1fe7f9d5-1e60-4138-8d03-b3985efe4aff",
+      "name": "Zona Real de Minas"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c005",
+              "name": "costo_domicilio",
+              "value": 4500,
+              "type": "number"
+            },
+            {
+              "id": "c005b",
+              "name": "tiempo_entrega_min",
+              "value": 30,
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        576
+      ],
+      "id": "2e1b64c5-fe94-4602-8f2d-d21a9f995138",
+      "name": "Zona La Concordia"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c006",
+              "name": "costo_domicilio",
+              "value": "6000",
+              "type": "number"
+            },
+            {
+              "id": "c006b",
+              "name": "tiempo_entrega_min",
+              "value": "40",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        768
+      ],
+      "id": "59d1a00f-daf9-4d3e-906e-7e0dfe5bb9b0",
+      "name": "Zona Floridablanca"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c007",
+              "name": "costo_domicilio",
+              "value": "7000",
+              "type": "number"
+            },
+            {
+              "id": "c007b",
+              "name": "tiempo_entrega_min",
+              "value": "45",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        960
+      ],
+      "id": "4ef6268d-f424-4663-b06e-440912241755",
+      "name": "Zona Girón"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c008",
+              "name": "costo_domicilio",
+              "value": "8000",
+              "type": "number"
+            },
+            {
+              "id": "c008b",
+              "name": "tiempo_entrega_min",
+              "value": "50",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        1152
+      ],
+      "id": "4d535a6f-a576-4a36-916d-137fe852ab88",
+      "name": "Zona Piedecuesta"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c009",
+              "name": "costo_domicilio",
+              "value": 0,
+              "type": "number"
+            },
+            {
+              "id": "c009b",
+              "name": "error_barrio",
+              "value": "Zona no cubierta por el domicilio",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -288,
+        1344
+      ],
+      "id": "bf6388bf-5ef2-4742-a7e9-7ccf9b413628",
+      "name": "Zona No Cubierta"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e001",
+              "name": "total_final",
+              "value": "={{ Number($json.precio_unitario) * Number($json.body.cantidad) + Number($json.costo_domicilio) }}",
+              "type": "number"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -64,
+        576
+      ],
+      "id": "2219f8f2-3d8c-460e-933c-5d2b5875e551",
+      "name": "Calcular Total Final"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b1a1a1a1-0001-0001-0001-000000000001",
+                    "leftValue": "={{ $json.body.barrio }}",
+                    "rightValue": "centro",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Centro"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b1a1a1a1-0002-0002-0002-000000000002",
+                    "leftValue": "={{ $json.body.barrio }}",
+                    "rightValue": "cabecera del llano",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Cabecera"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b1a1a1a1-0003-0003-0003-000000000003",
+                    "leftValue": "={{ $json.body.barrio }}",
+                    "rightValue": "cañaveral",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Cañaveral"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b1a1a1a1-0004-0004-0004-000000000004",
+                    "leftValue": "={{ $json.body.barrio }}",
+                    "rightValue": "real de minas",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Real de Minas"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b1a1a1a1-0005-0005-0005-000000000005",
+                    "leftValue": "={{ $json.body.barrio }}",
+                    "rightValue": "la concordia",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Concordia"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b1a1a1a1-0006-0006-0006-000000000006",
+                    "leftValue": "={{ $json.body.barrio }}",
+                    "rightValue": "floridablanca",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Floridablanca"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b1a1a1a1-0007-0007-0007-000000000007",
+                    "leftValue": "={{ $json.body.barrio }}",
+                    "rightValue": "girón",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Giron"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b1a1a1a1-0008-0008-0008-000000000008",
+                    "leftValue": "={{ $json.body.barrio }}",
+                    "rightValue": "piedecuesta",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Piedecuesta"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -512,
+        464
+      ],
+      "id": "6cd260e2-050f-4314-9637-059964da4f35",
+      "name": "Switch2"
+    },
+    {
+      "parameters": {
+        "operation": "upsert",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "pedidos",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "cantidad": "={{ $json.body.cantidad }}",
+            "precio_unitario": 0,
+            "costo_domicilio": "={{ $json.costo_domicilio }}",
+            "total": "={{ $json.body.total }}",
+            "tiempo_prep_min": "={{ $json.tiempo_prep_min }}",
+            "tiempo_entrega_min": "={{ $json.tiempo_entrega_min }}",
+            "id_pedido": "={{ $json.id_pedido }}",
+            "nombre_cliente": "={{ $json.cliente }}",
+            "correo": "={{ $json.correo_cliente }}",
+            "telefono": "={{ $json.body.telefono }}",
+            "direccion": "={{ $json.body.direccion }}",
+            "barrio": "={{ $json.body.barrio }}",
+            "producto": "={{ $json.body.producto }}"
+          },
+          "matchingColumns": [
+            "id_pedido"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "id_pedido",
+              "displayName": "id_pedido",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "nombre_cliente",
+              "displayName": "nombre_cliente",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "correo",
+              "displayName": "correo",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "telefono",
+              "displayName": "telefono",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "direccion",
+              "displayName": "direccion",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "barrio",
+              "displayName": "barrio",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "producto",
+              "displayName": "producto",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "cantidad",
+              "displayName": "cantidad",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "precio_unitario",
+              "displayName": "precio_unitario",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "costo_domicilio",
+              "displayName": "costo_domicilio",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "total",
+              "displayName": "total",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "tiempo_prep_min",
+              "displayName": "tiempo_prep_min",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "tiempo_entrega_min",
+              "displayName": "tiempo_entrega_min",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": false,
+              "removed": false
+            },
+            {
+              "id": "fecha",
+              "displayName": "fecha",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": false,
+              "removed": true
+            },
+            {
+              "id": "estado",
+              "displayName": "estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": false,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        160,
+        480
+      ],
+      "id": "a2f718e4-90a1-405d-9306-4ded26f2bc99",
+      "name": "Insert or update rows in a table",
+      "credentials": {
+        "postgres": {
+          "id": "HZ1hnWnkpAohhhZD",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "criscrack48@gmail.com",
+        "subject": "=Pedido numero TI-{{ $now.toFormat('yyyyMMdd')}}-{{ $execution.id }}",
+        "message": "=El {{ $json.producto }} por la cantidad {{ $json.cantidad }} para el barrio {{ $json.barrio }} con un precio total de {{ $json.total }} en estado de {{ $json.estado }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        704,
+        528
+      ],
+      "id": "1ea1a41b-ac59-4159-bcdb-da6c8fbb82d7",
+      "name": "Send a message",
+      "webhookId": "960ced0b-b087-4c13-af1f-8114d1453683",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "d2SdPIMLWQoeldwm",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Salchipapa Sencilla",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Salchipapa especial",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Hamburguesa",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Perro Especial",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Chuzo poll",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Papa Locas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Fallback",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salchipapa Sencilla": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Salchipapa especial": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Hamburguesa": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perro Especial": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chuzo poll": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Papa Locas": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fallback": {
+      "main": [
+        [
+          {
+            "node": "Switch2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zona Centro": {
+      "main": [
+        [
+          {
+            "node": "Calcular Total Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zona Cabecera": {
+      "main": [
+        [
+          {
+            "node": "Calcular Total Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zona Cañaveral": {
+      "main": [
+        [
+          {
+            "node": "Calcular Total Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zona Real de Minas": {
+      "main": [
+        [
+          {
+            "node": "Calcular Total Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zona La Concordia": {
+      "main": [
+        [
+          {
+            "node": "Calcular Total Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zona Floridablanca": {
+      "main": [
+        [
+          {
+            "node": "Calcular Total Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zona Girón": {
+      "main": [
+        [
+          {
+            "node": "Calcular Total Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zona Piedecuesta": {
+      "main": [
+        [
+          {
+            "node": "Calcular Total Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Zona No Cubierta": {
+      "main": [
+        [
+          {
+            "node": "Calcular Total Final",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch2": {
+      "main": [
+        [
+          {
+            "node": "Zona Centro",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zona Cabecera",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zona Cañaveral",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zona Real de Minas",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zona La Concordia",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zona Floridablanca",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zona Girón",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zona Piedecuesta",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Zona No Cubierta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calcular Total Final": {
+      "main": [
+        [
+          {
+            "node": "Insert or update rows in a table",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert or update rows in a table": {
+      "main": [
+        [
+          {
+            "node": "Append or update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append or update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "f2a8be9d-62ce-4e88-8694-2271b4fca064",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "5f8854d90b200ea1eba4c9e41117a89f24e3ad820f8faedc210f962407218811"
+  },
+  "nodeGroups": [],
+  "id": "MG8E0Enk6G3LwZe6",
+  "tags": []
+}

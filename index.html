@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Camacho's Express — Pedido a Domicilio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Fondo con textura de rejilla / carbón -->
+  <div class="grill-bg" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="brand">
+      <span class="brand-mark">🔥</span>
+      <div class="brand-text">
+        <h1>CAMACHO'S <span>EXPRESS</span></h1>
+        <p>Sabor bumangués a domicilio · Bucaramanga</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <form id="pedidoForm" class="ticket" novalidate>
+
+      <div class="ticket-header">
+        <span class="eyebrow">Ticket de pedido</span>
+        <h2>Arma tu pedido</h2>
+      </div>
+
+      <!-- Selección de producto: tarjetas tipo menú (radio buttons) -->
+      <fieldset class="menu-grid">
+        <legend>Elige tu producto <span class="req">*</span></legend>
+
+        <label class="menu-card">
+          <input type="radio" name="producto" value="Salchipapa Sencilla" data-precio="12000" required />
+          <span class="card-body">
+            <span class="card-emoji">🍟</span>
+            <span class="card-name">Salchipapa Sencilla</span>
+            <span class="card-price">$12.000</span>
+          </span>
+        </label>
+
+        <label class="menu-card">
+          <input type="radio" name="producto" value="Salchipapa Especial Camacho" data-precio="18000" />
+          <span class="card-body">
+            <span class="card-emoji">🌶️</span>
+            <span class="card-name">Salchipapa Especial Camacho</span>
+            <span class="card-price">$18.000</span>
+          </span>
+        </label>
+
+        <label class="menu-card">
+          <input type="radio" name="producto" value="Hamburguesa Camachera" data-precio="16000" />
+          <span class="card-body">
+            <span class="card-emoji">🍔</span>
+            <span class="card-name">Hamburguesa Camachera</span>
+            <span class="card-price">$16.000</span>
+          </span>
+        </label>
+
+        <label class="menu-card">
+          <input type="radio" name="producto" value="Perro Caliente Especial" data-precio="10000" />
+          <span class="card-body">
+            <span class="card-emoji">🌭</span>
+            <span class="card-name">Perro Caliente Especial</span>
+            <span class="card-price">$10.000</span>
+          </span>
+        </label>
+
+        <label class="menu-card">
+          <input type="radio" name="producto" value="Chuzo de Pollo" data-precio="14000" />
+          <span class="card-body">
+            <span class="card-emoji">🍢</span>
+            <span class="card-name">Chuzo de Pollo</span>
+            <span class="card-price">$14.000</span>
+          </span>
+        </label>
+
+        <label class="menu-card">
+          <input type="radio" name="producto" value="Papas Locas" data-precio="13000" />
+          <span class="card-body">
+            <span class="card-emoji">🥔</span>
+            <span class="card-name">Papas Locas</span>
+            <span class="card-price">$13.000</span>
+          </span>
+        </label>
+      </fieldset>
+
+      <!-- Cantidad -->
+      <div class="field-row">
+        <div class="field">
+          <label for="cantidad">Cantidad <span class="req">*</span></label>
+          <select id="cantidad" required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
+
+        <div class="field total-field">
+          <span class="label-static">Total a pagar</span>
+          <span id="totalDisplay" class="total-value">$0</span>
+        </div>
+      </div>
+
+      <div class="divider" aria-hidden="true"></div>
+
+      <!-- Datos personales -->
+      <div class="ticket-header">
+        <span class="eyebrow">Datos de entrega</span>
+        <h2>¿A dónde lo llevamos?</h2>
+      </div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="nombre">Nombre completo <span class="req">*</span></label>
+          <input type="text" id="nombre" placeholder="Ej: Laura Gómez" required />
+        </div>
+
+        <div class="field">
+          <label for="correo">Correo electrónico <span class="req">*</span></label>
+          <input type="email" id="correo" placeholder="ej: laura@correo.com" required />
+        </div>
+
+        <div class="field">
+          <label for="telefono">Teléfono <span class="req">*</span></label>
+          <input type="tel" id="telefono" placeholder="Ej: 3001234567" pattern="[0-9]{7,10}" required />
+        </div>
+
+        <div class="field">
+          <label for="barrio">Barrio / Zona <span class="req">*</span></label>
+          <select id="barrio" required>
+            <option value="">Selecciona una zona</option>
+            <option value="Cabecera del Llano">Cabecera del Llano</option>
+            <option value="Cañaveral">Cañaveral</option>
+            <option value="Centro">Centro</option>
+            <option value="Real de Minas">Real de Minas</option>
+            <option value="La Concordia">La Concordia</option>
+            <option value="Floridablanca">Floridablanca</option>
+            <option value="Girón">Girón</option>
+            <option value="Piedecuesta">Piedecuesta</option>
+          </select>
+        </div>
+
+        <div class="field field-full">
+          <label for="direccion">Dirección exacta <span class="req">*</span></label>
+          <input type="text" id="direccion" placeholder="Ej: Calle 45 #20-30, apto 302" required />
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span>Enviar pedido</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <p class="required-note">* Todos los campos son obligatorios</p>
+      <p id="statusMsg" class="status-msg" role="status" aria-live="polite"></p>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p>Proyecto académico — Gestión Automatizada de Pedidos de Domicilio · n8n + PostgreSQL + Google Sheets + Gmail</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
